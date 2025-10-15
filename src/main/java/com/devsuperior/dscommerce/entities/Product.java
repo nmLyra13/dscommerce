@@ -1,12 +1,38 @@
 package com.devsuperior.dscommerce.entities;
 
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "tb_product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
     private String imgUrl;
+
+    /*
+    / Dentro da Classe Product, temos uma referencia
+    / para a coleção de categorias (categories). Devemos lembrar
+    / que entre as entidades Product x Category temos uma relação
+    / de muitos para muitos, assim o set vai garantir que não vai
+    / haver repetição produto(id) x categoria(id).
+    /
+    / HashSet é usado como uma classe concreta.
+    */
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public Product(){
     }
@@ -57,5 +83,9 @@ public class Product {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 }
