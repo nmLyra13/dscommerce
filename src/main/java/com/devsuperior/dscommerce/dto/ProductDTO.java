@@ -32,15 +32,19 @@ public class ProductDTO {
     public Long getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public Double getPrice() {
         return price;
     }
+
     public String getImgUrl() {
         return imgUrl;
     }

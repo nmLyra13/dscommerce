@@ -1,11 +1,12 @@
 package com.devsuperior.dscommerce.entities;
 
 import jakarta.persistence.*;
+
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name="tb_payment")
+@Table(name = "tb_payment")
 public class Payment {
 
     @Id
@@ -19,7 +20,7 @@ public class Payment {
     @MapsId
     private Order order;
 
-    public Payment(){
+    public Payment() {
     }
 
     public Payment(Long id, Instant moment, Order order) {

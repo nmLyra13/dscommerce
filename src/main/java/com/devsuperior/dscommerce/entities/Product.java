@@ -6,9 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import static org.springframework.core.annotation.OrderUtils.getOrder;
 
 @Entity
 @Table(name = "tb_product")
@@ -42,7 +39,7 @@ public class Product {
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
 
-    public Product(){
+    public Product() {
     }
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
